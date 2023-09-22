@@ -15,7 +15,7 @@ class EventDetailCard extends StatelessWidget {
   final String venue_name;
   final String venue_city;
   final String venue_country;
-  final String eventTimings;
+  //final String eventTimings;
 
   const EventDetailCard({
     super.key,
@@ -25,13 +25,28 @@ class EventDetailCard extends StatelessWidget {
     required this.venue_city,
     required this.date_time,
     required this.venue_country,
-    required this.eventTimings,
+    //required this.eventTimings,
   });
 
   String formatEventDate(DateTime date) {
     final DateFormat formatter =
         DateFormat('E, MMM d'); // E for day, MMM for short month, d for day
     return formatter.format(date);
+  }
+
+  String extractTime(DateTime date) {
+    DateTime dateTime = DateTime.parse(date.toString());
+    DateFormat timeFormat =
+        DateFormat.jm(); // Format for time only (e.g., 9:00 AM)
+    return timeFormat.format(dateTime);
+  }
+
+  String truncateText(String text, int maxLength) {
+    if (text.length <= maxLength) {
+      return text; // No need to truncate if it's within the limit
+    } else {
+      return text.substring(0, maxLength - 3) + '...'; // Truncate and add "..."
+    }
   }
 
   @override
@@ -47,7 +62,7 @@ class EventDetailCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1), // Shadow color
+            color: Colors.grey.withOpacity(0.5), // Shadow color
             spreadRadius: 2, // Spread radius
             blurRadius: 5, // Blur radius
             offset: const Offset(0, 2), // Offset to bottom-right
@@ -72,8 +87,8 @@ class EventDetailCard extends StatelessWidget {
                 ),
                 width: 70,
                 height: 100,
-                child: Image.asset(
-                  'assets/event.png',
+                child: Image.network(
+                  banner_image,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -83,12 +98,13 @@ class EventDetailCard extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(
                   height: 8.0,
                 ),
                 Text(
-                  '${formatEventDate(date_time)} • $eventTimings', // Format: "Date • Time"
+                  '${formatEventDate(date_time)} • ${extractTime(date_time)}', // Format: "Date • Time"
                   style: const TextStyle(
                       fontSize: 16.0,
                       color: Color.fromARGB(255, 17, 141, 242),
@@ -109,11 +125,12 @@ class EventDetailCard extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      '$venue_name • $venue_city, $venue_country',
+                      truncateText('$venue_name • $venue_country', 30),
                       style: GoogleFonts.notoSansThai(
                           fontWeight: FontWeight.w500,
                           fontSize: 13,
                           color: Colors.grey),
+                      overflow: TextOverflow.ellipsis,
                     )
                   ],
                 )

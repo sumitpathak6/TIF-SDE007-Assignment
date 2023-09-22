@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tif/components/text.dart';
 import 'package:tif/models/Event.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class EventDetailPage extends StatefulWidget {
   // Define the event object to display event details
@@ -15,6 +15,14 @@ class EventDetailPage extends StatefulWidget {
 }
 
 bool isExpanded = false;
+
+String truncateText(String text, int maxLength) {
+    if (text.length <= maxLength) {
+      return text; // No need to truncate if it's within the limit
+    } else {
+      return text.substring(0, maxLength - 3) + '...'; // Truncate and add "..."
+    }
+  }
 
 class _EventDetailPageState extends State<EventDetailPage> {
   @override
@@ -57,8 +65,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
               Container(
                 height: MediaQuery.of(context).size.height * 0.35,
                 width: double.infinity,
-                child: Image.asset(
-                  'assets/event.png',
+                child: Image.network(
+                  widget.event.banner_image,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -85,12 +93,19 @@ class _EventDetailPageState extends State<EventDetailPage> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/event.png',
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.cover,
-                        ),
+                        child: widget.event.organiser_icon.endsWith('.svg')
+                            ? SvgPicture.network(
+                                widget.event.organiser_icon,
+                                width: 60,
+                                height: 60,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                widget.event.organiser_icon,
+                                width: 60,
+                                height: 60,
+                                fit: BoxFit.cover,
+                              ),
                       ),
                       const SizedBox(
                         width: 16.0,
@@ -190,7 +205,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.event.venue_name,
+                            truncateText(widget.event.venue_name, 30),
                             style: GoogleFonts.notoSansThai(
                                 fontWeight: FontWeight.w600, fontSize: 16.0),
                           ),

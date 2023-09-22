@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:tif/components/eventname_text.dart';
 
 class SearchEventsCard extends StatelessWidget {
   final String banner_image;
@@ -12,17 +11,17 @@ class SearchEventsCard extends StatelessWidget {
   final String venue_name;
   final String venue_city;
   final String venue_country;
-  final String eventTimings;
+  //final String eventTimings;
 
-  const SearchEventsCard(
-      {super.key,
-      required this.banner_image,
-      required this.title,
-      required this.date_time,
-      required this.venue_name,
-      required this.venue_city,
-      required this.venue_country,
-      required this.eventTimings});
+  const SearchEventsCard({
+    super.key,
+    required this.banner_image,
+    required this.title,
+    required this.date_time,
+    required this.venue_name,
+    required this.venue_city,
+    required this.venue_country,
+  });
 
   String formatEventDate(DateTime date) {
     final DateFormat formatter =
@@ -46,6 +45,13 @@ class SearchEventsCard extends StatelessWidget {
     }
   }
 
+  String extractTime(DateTime date) {
+    DateTime dateTime = DateTime.parse(date.toString());
+    DateFormat timeFormat =
+        DateFormat.jm(); // Format for time only (e.g., 9:00 AM)
+    return timeFormat.format(dateTime);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +65,7 @@ class SearchEventsCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1), // Shadow color
+            color: Colors.grey.withOpacity(0.5), // Shadow color
             spreadRadius: 2, // Spread radius
             blurRadius: 5, // Blur radius
             offset: const Offset(0, 2), // Offset to bottom-right
@@ -83,8 +89,8 @@ class SearchEventsCard extends StatelessWidget {
                 ),
                 width: 70,
                 height: 100,
-                child: Image.asset(
-                  'assets/event.png',
+                child: Image.network(
+                  banner_image,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -94,12 +100,13 @@ class SearchEventsCard extends StatelessWidget {
           Expanded(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
                 height: 8.0,
               ),
               Text(
-                '${formatEventDate(date_time)} - $eventTimings', // Format: "Date • Time"
+                '${formatEventDate(date_time)} - ${extractTime(date_time)}', // Format: "Date • Time"
                 style: const TextStyle(
                     fontSize: 16.0,
                     color: Color.fromARGB(255, 17, 141, 242),
