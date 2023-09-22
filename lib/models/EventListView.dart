@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tif/element/EventDetailCard.dart';
-import 'package:tif/element/SearchEventCard.dart';
+import 'package:tif/display/SearchEventCard.dart';
 import 'package:tif/backend/fetchEvent.dart';
 import 'package:tif/pages/event_detail.dart';
 import 'package:tif/models/Event.dart';

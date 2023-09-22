@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tif/element/EventDetailCard.dart';
+import 'package:tif/display/EventDetailCard.dart';
 import 'package:tif/backend/fetchEvent.dart';
 import 'package:tif/components/text.dart';
 import 'package:tif/pages/event_detail.dart';
@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SearchPage()),
+                MaterialPageRoute(builder: (context) => const SearchPage()),
               );
             },
             icon: const Icon(

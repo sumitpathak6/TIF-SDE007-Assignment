@@ -1,16 +1,17 @@
 import 'dart:convert';
-import 'dart:js_interop_unsafe';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tif/components/text.dart';
-import 'package:tif/element/SearchEventCard.dart';
+import 'package:tif/display/SearchEventCard.dart';
 import 'package:tif/models/Event.dart';
 import 'package:tif/models/EventListView.dart';
 import 'package:http/http.dart' as http;
 
 class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _SearchPageState createState() => _SearchPageState();
 }
 
@@ -28,13 +29,17 @@ class _SearchPageState extends State<SearchPage> {
 
   void _updateFilteredEvents(String query) {
     if (query.isNotEmpty) {
-      filteredEvents = events.where((event) {
-        final title = event.title.toLowerCase();
-        final searchQuery = query.toLowerCase();
-        return title.contains(searchQuery);
-      }).toList();
+      final searchQuery = query.toLowerCase();
+      setState(() {
+        filteredEvents = events.where((event) {
+          final title = event.title.toLowerCase();
+          return title.contains(searchQuery);
+        }).toList();
+      });
     } else {
-      filteredEvents = List.from(events);
+      setState(() {
+        filteredEvents = [];
+      });
     }
   }
 
@@ -91,30 +96,18 @@ class _SearchPageState extends State<SearchPage> {
           children: [
             Row(
               children: [
-                IconButton(
-                  onPressed: () {
-                    _updateFilteredEvents(searchController.text);
-                  },
-                  icon: const Icon(
-                    Icons.search,
-                    color: Colors.blue,
-                    size: 35.0,
-                  ),
-                ),
-                Container(
-                  width: 1.0, // Adjust the width as needed
-                  height: 24.0, // Adjust the height as needed
-                  color: Colors.black, // Divider color
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 10.0), // Adjust the margin as needed
-                ),
                 Expanded(
                   child: TextField(
                     controller: searchController,
-                    onChanged: (value) {},
+                    onChanged: _updateFilteredEvents,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Type Event Name',
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: Colors.blue,
+                        size: 35.0,
+                      ),
                       hintStyle: GoogleFonts.notoSansThai(
                           color: Colors.grey,
                           fontSize: 20,

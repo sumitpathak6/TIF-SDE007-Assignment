@@ -1,4 +1,3 @@
-// ignore: file_names
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
@@ -6,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:intl/intl.dart';
 import 'package:tif/components/eventname_text.dart';
-import 'package:tif/components/text.dart';
 
 class EventDetailCard extends StatelessWidget {
   final String banner_image;
@@ -45,7 +43,7 @@ class EventDetailCard extends StatelessWidget {
     if (text.length <= maxLength) {
       return text; // No need to truncate if it's within the limit
     } else {
-      return text.substring(0, maxLength - 3) + '...'; // Truncate and add "..."
+      return '${text.substring(0, maxLength - 3)}...'; // Truncate and add "..."
     }
   }
 
