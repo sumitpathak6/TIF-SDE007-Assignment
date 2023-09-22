@@ -1,16 +1,37 @@
-# tif
+Events App
+A simple Flutter app that fetches and displays events and it's information from Postman Collection.
 
-A new Flutter project.
+Project Overview
+The Events App is a Flutter application that fetches and displays events and its information from the Postman Collection. It demonstrates how to make HTTP requests, handle JSON data, and use the Flutter framework to create a simple user interface.
 
-## Getting Started
+Features
+Fetches memes from the Postman Collection
+Displays events with their names and images
+Supports swipe-down-to-refresh for viewing and surfing events around.
+Prerequisites
+Flutter and Dart SDK installed on your machine
+An emulator or a physical device to run the app
+Usage
+Once the app is running, it will display a list of events fetched from the Postmman Collection. You can swipe down on the screen to get the list of all the events and search witihin them.
 
-This project is a starting point for a Flutter application.
+<img src="https://github.com/sumitpathak6/TIF-SDE007-Assignment/blob/master/images/Screenshot_1695410911.png" alt="Screenshot" width="400" draggable="true" />
+<img src="https://github.com/sumitpathak6/TIF-SDE007-Assignment/blob/master/images/Screenshot_1695410874.png" alt="Screenshot" width="400" draggable="true" />
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Contributing
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Contributions are welcome! To contribute to the Events App, follow these steps:
+
+Fork the repository.
+Create a new branch for your feature: git checkout -b feature/your-feature-name
+
+Commit your changes: git commit -am 'Add some feature'
+
+Push to the branch: git push origin feature/your-feature-name
+
+Open a pull request.
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Feel free to customize this template further to include specific details about your project, like screenshots, additional features, or any other information you think is relevant.
