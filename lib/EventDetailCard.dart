@@ -68,13 +68,13 @@ class EventDetailCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
                 width: 70,
                 height: 100,
-                child: Image.network(
-                  banner_image,
-                  fit: BoxFit.cover,
+                child: Image.asset(
+                  'assets/event.png',
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
