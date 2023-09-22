@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class EventDetailPage extends StatefulWidget {
-  // Define the event object to display event details
   final Event event;
 
   const EventDetailPage({super.key, required this.event});
@@ -17,12 +16,12 @@ class EventDetailPage extends StatefulWidget {
 bool isExpanded = false;
 
 String truncateText(String text, int maxLength) {
-    if (text.length <= maxLength) {
-      return text; // No need to truncate if it's within the limit
-    } else {
-      return text.substring(0, maxLength - 3) + '...'; // Truncate and add "..."
-    }
+  if (text.length <= maxLength) {
+    return text;
+  } else {
+    return text.substring(0, maxLength - 3) + '...';
   }
+}
 
 class _EventDetailPageState extends State<EventDetailPage> {
   @override
@@ -30,13 +29,13 @@ class _EventDetailPageState extends State<EventDetailPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white, size: 30),
+        iconTheme: const IconThemeData(color: Colors.black, size: 30),
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
           'Event Details',
           style: GoogleFonts.notoSansThai(
-              color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500),
+              color: Colors.black, fontSize: 22, fontWeight: FontWeight.w500),
         ),
         actions: [
           Container(
@@ -77,7 +76,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  //color: Colors.white.withOpacity(0.8),
                   padding: const EdgeInsets.all(26.0),
                   child: Text(
                     widget.event.title,
@@ -240,10 +238,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
                     widget.event.description,
                     style: GoogleFonts.notoSansThai(
                         fontSize: 16, fontWeight: FontWeight.w500),
-                    maxLines:
-                        3, // Adjust the number of lines to your preference
-                    overflow: TextOverflow
-                        .ellipsis, // Display '...' when text overflows
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 )
               ],

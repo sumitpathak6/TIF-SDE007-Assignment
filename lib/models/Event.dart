@@ -1,10 +1,8 @@
-// ignore_for_file: non_constant_identifier_names
 
 class Event {
   final String banner_image;
   final String title;
-  final DateTime date_time; // DateTime for event date and time
-  //final String eventTime;
+  final DateTime date_time; 
   final String venue_name;
   final String venue_city;
   final String venue_country;
@@ -16,7 +14,6 @@ class Event {
       {required this.banner_image,
       required this.title,
       required this.date_time,
-      //required this.eventTime,
       required this.venue_name,
       required this.venue_city,
       required this.venue_country,

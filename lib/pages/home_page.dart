@@ -65,7 +65,6 @@ class Home extends StatelessWidget {
                     child: EventDetailCard(
                       banner_image: event.banner_image,
                       title: event.title,
-                      //eventTimings: event.eventTime,
                       venue_name: event.venue_name,
                       venue_city: event.venue_city,
                       date_time: event.date_time,

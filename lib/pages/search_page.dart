@@ -16,8 +16,8 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  //List<Event> events = events; // Your list of events
-  List<Event> filteredEvents = []; // Filtered events based on search
+  
+  List<Event> filteredEvents = [];
 
   TextEditingController searchController = TextEditingController();
 
@@ -74,14 +74,12 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void dispose() {
-    // Dispose of the searchController when the widget is disposed
     searchController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Implement your search page UI here
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
